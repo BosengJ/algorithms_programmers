@@ -24,6 +24,5 @@ signs가 [false,false,true] 이므로, 실제 수들의 값은 각각 -1, -2, 3�
 '''
 
 def solution(absolutes, signs):
-    return sum(absolutes[i] if signs[i]==True  
-               else absolutes[i]*(-1) 
+    return sum(absolutes[i] if signs[i]==True else absolutes[i]*(-1) 
                for i in range(len(absolutes)))

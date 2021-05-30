@@ -15,8 +15,6 @@ a	b	return
 5	3	12
 '''
 
-a = 3
-b = 3
 
 A =[]
 if a < b:
@@ -27,4 +25,3 @@ answer = sum(A[:len(A)])
 
 if a == b:
     answer = a
-print(answer)
