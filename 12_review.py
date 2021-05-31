@@ -1,7 +1,9 @@
-def solution(ab,s):
-    return sum(ab[i] if s[i] == True else ab[i]*(-1) for i in range(len(ab)))
+def solution(a,b):
+    for i in range(len(a)):
+        print(i)
+        answer = sum(a[i]*b[i])
+    return answer
 
-
-ab = [4,7,12]	
-s = [True,False,True]	
-print(solution(ab,s))
+a = [1,2,3,4]
+b = [-3,-1,0,2]
+print(solution(a,b))
