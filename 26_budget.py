@@ -54,3 +54,5 @@ def solution(d, budget):
             return len(budget_list)
         elif total == budget:
             return len(budget_list)
+        
+    return len(budget_list)
