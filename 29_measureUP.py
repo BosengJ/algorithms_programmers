@@ -52,7 +52,6 @@ def countMs(n):
 
 def solution(left, right):
     ans = []
-    total = 0
     
     for i in range(left,right+1):
         p = countMs(i)
