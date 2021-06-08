@@ -12,20 +12,9 @@ def solution(s):
     s_list = s.split()
     answer = ""
     ans_list = []
-    for p in s_list:
-        new_para = changeStr(p)
-        ans_list.append(new_para)
+    for word in s_list:
+        new_word = changeStr(word)
+        ans_list.append(new_word)
+        print(ans_list)
     answer = " ".join(ans_list)
     return answer
-
-s = "try hello world"
-a = 'i love you'
-b = 'i LOvE yOU'
-c = 'I LOVE YOU'
-d = 'i Am jEONg Ga rAm'
-
-print(solution(s))
-print(solution(a))
-print(solution(b))
-print(solution(c))
-print(solution(d))
