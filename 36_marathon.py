@@ -34,26 +34,6 @@ participant	completion	return
 
 '''
 
-# def checkOverlap(participant,completion):
-#     answer = ''
-#     for name in participant:
-#         if name in completion:
-#             completion.remove(name)
-#         else:
-#             answer += name
-#         print(name,completion,answer)
-#     return answer
-
-# def solution(participant, completion):
-#     p_set = set(participant)
-#     c_set = set(completion)
-#     answer = list(p_set - c_set)
-#     answer = ''.join(answer)
-    
-#     if len(answer) == 0:
-#         answer = checkOverlap(participant,completion)
-#     return answer
-
 def solution(participant, completion):
     participant.sort()
     completion.sort()
