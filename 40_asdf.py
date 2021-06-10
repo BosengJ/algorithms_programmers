@@ -5,7 +5,7 @@ def sumThreeNum(nums):
             for k in range(j+1,len(nums)):
                 sum_num = nums[i] + nums[j] + nums[k]
                 sum_three_nums.append(sum_num)
-    sum_three_nums = list(set(sum_three_nums))
+    sum_three_nums = set(sum_three_nums)
     return sum_three_nums
 
 def checkPrimeNum(i):
