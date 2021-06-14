@@ -50,15 +50,16 @@ def solution(n, lost, reserve):
             digit_list[i] -= 1
         if i+1 in reserve:
             digit_list[i] += 1
-    print(digit_list)
-    for i in range(1,len(digit_list)):
+    # print(digit_list)
+    for i in range(len(digit_list)):
         if (digit_list[i] > 1):
-            if (digit_list[i-1] < 1):
-                digit_list[i-1] = 1
-                digit_list[i] = 1
-            elif (digit_list[i+1] < 1):
+            if ((i-1>=0) and (digit_list[i-1] < 1)):
+                    digit_list[i-1] = 1
+                    digit_list[i] = 1
+            elif ((i+1 < len(digit_list)) and (digit_list[i+1] < 1)):
                 digit_list[i+1] = 1
                 digit_list[i] = 1
+    
     answer = 0
     for i in digit_list:
         if i > 0:
