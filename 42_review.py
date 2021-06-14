@@ -1,1 +1,4 @@
-val_none = 0
+a = [1]
+b = 3
+a_list = a*b
+print(a_list)
