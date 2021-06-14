@@ -109,18 +109,9 @@ no	new_id	result
 6단계 "abcdefghijklmn.p" → "abcdefghijklmn." → "abcdefghijklmn"
 7단계 변화 없습니다.'''
 
-def solution(new_id):
-    answer = ''
+def stage01(new_id):
     new_id_list = list(new_id)
     stage01_list = []
-    stage02_list = []
-    stage03_list = []
-    stage04_list = []
-    stage05_list = []
-    stage06_list = []
-    stage07_list = []
-    
-    # stage01
     for c in new_id_list:
         if (ord(c)>=65) and (ord(c)<=90):
             low_ascii = ord(c)+32
@@ -128,7 +119,10 @@ def solution(new_id):
             stage01_list.append(low_chr)
         else:
             stage01_list.append(c)
-    #02
+    return stage01_list
+
+def stage02(stage01_list):
+    stage02_list = []
     for c in stage01_list:
         if (ord(c)>=97) and (ord(c)<=122): #알파벳소문자
             stage02_list.append(c)
@@ -136,7 +130,10 @@ def solution(new_id):
             stage02_list.append(c)
         elif (c == '-') or (c == '_') or (c == '.'): #허용하는 특수문자
             stage02_list.append(c)
-    #03
+    return stage02_list
+
+def stage03(stage02_list):
+    stage03_list = []
     for i in range(len(stage02_list)):
         if i == 0:
             stage03_list.append(stage02_list[i])
@@ -144,7 +141,10 @@ def solution(new_id):
             stage03_list.append(stage02_list[i])
         elif (stage02_list[i] == '.') and (stage02_list[i] != stage02_list[i-1]):
             stage03_list.append(stage02_list[i])
-    #04
+    return stage03_list
+
+def stage04(stage03_list):
+    stage04_list = []
     for i in range(len(stage03_list)):
         if (i == 0) and (stage03_list[i] == '.'):
             continue
@@ -152,21 +152,41 @@ def solution(new_id):
             continue
         else:
             stage04_list.append(stage03_list[i])
-    #05
+    return stage04_list
+
+def stage05(stage04_list):
     if len(stage04_list) == 0:
-        stage04_list.append('a')
-    stage05_list = stage04_list
-    #06
+        stage05_list = ['a']
+    else:
+        stage05_list = stage04_list
+    return stage05_list
+
+def stage06(stage05_list):
     if len(stage05_list) > 15:
         stage06_list = stage05_list[:15]
     else:
         stage06_list = stage05_list
     if stage06_list[len(stage06_list)-1] == '.':
         stage06_list.pop()
-    #07
+    return stage06_list
+
+def stage07(stage06_list):
     stage07_list = stage06_list
     if len(stage06_list) < 3:
         while len(stage07_list) < 3:
-            stage07_list.append(stage06_list[len(stage06_list)-1])
+            stage07_list.append(stage06_list[len(stage06_list)-1])  
+    return stage07_list
+
+def solution(new_id):
+    answer = ''
+    stage01_list = stage01(new_id)
+    stage02_list = stage02(stage01_list)
+    stage03_list = stage03(stage02_list)
+    stage04_list = stage04(stage03_list)
+    stage05_list = stage05(stage04_list)
+    stage06_list = stage06(stage05_list)
+    stage07_list = stage07(stage06_list)
+    
     answer = ''.join(stage07_list)
+    
     return answer
