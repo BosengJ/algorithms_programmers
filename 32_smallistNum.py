@@ -15,12 +15,27 @@ arr	return
 [4,3,2,1]	[4,3,2]
 [10]	[-1]'''
 
+def searchMin(arr):
+    idx = 0
+    for i in range(len(arr)-1):
+        if (arr[i] < arr[i+1]) and (arr[i] <= arr[idx]):
+            idx = i
+        elif (arr[i+1] < arr[i]) and (arr[i+1] < arr[idx]):
+            idx = i+1
+    min_num = arr[idx]
+    return min_num
+        
+
 def solution(arr):
     if len(arr) > 1:
-        sorted_arr = sorted(arr)
-        s_num = sorted_arr[0]
-        arr.remove(s_num)
+        # sort 사용하지 않고 min 값 찾아내어 삭제하는 방법
+        min_num = searchMin(arr)
+        arr.remove(min_num)
         answer = arr
+        # sorted_arr = sorted(arr)
+        # s_num = sorted_arr[0]
+        # arr.remove(s_num)
+        # answer = arr
     else:
         answer = [-1]
     return answer
