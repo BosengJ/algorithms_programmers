@@ -33,13 +33,31 @@ participant	completion	return
 "mislav"는 참여자 명단에는 두 명이 있지만, 완주자 명단에는 한 명밖에 없기 때문에 한명은 완주하지 못했습니다.
 
 '''
-
+# dictionary 사용하여 문제 다시 풀기
 def solution(participant, completion):
-    participant.sort()
-    completion.sort()
-    completion.append('none')
-    check_dic = dict(zip(participant,completion))
+    participant_name = list(set(participant))
+    val_none = []
+    for i in range(len(participant_name)):
+        val_none.append(0)
+    marathon_dict = dict(zip(participant_name,val_none))
+    
+    for parti in participant:
+        marathon_dict[parti] += 1
+        
+    for com in completion:
+        marathon_dict[com] -= 1
+        
+    for parti,val in marathon_dict.items():
+        if val == 1:
+            answer = parti
+    return answer
 
-    for k, v in check_dic.items():
-        if k != v:
-            return k
+# def solution(participant, completion):
+#     participant.sort()
+#     completion.sort()
+#     completion.append('none')
+#     check_dic = dict(zip(participant,completion))
+
+#     for k, v in check_dic.items():
+#         if k != v:
+#             return k
