@@ -29,10 +29,23 @@ def changeStr(word):
     return change_str
             
 def solution(s):
-    s_list = s.split(' ')
+    # s_list = s.split(' ')
+    # split 안쓰고 구현하기
+    ch = ""
+    split_list = []
+    for i in range(len(s)):
+        if s[i] != ' ':
+            ch = ch + s[i]
+        else:
+            split_list.append(ch)
+            ch = ""
+        if i == len(s)-1:
+            split_list.append(ch)
+        print(ch)
+    print(split_list)
     answer = ""
     ans_list = []
-    for word in s_list:
+    for word in split_list:
         new_word = changeStr(word)
         ans_list.append(new_word)
     answer = " ".join(ans_list)
