@@ -41,17 +41,31 @@ n	lost	reserve	return
 ※ 공지 - 2019년 2월 18일 지문이 리뉴얼되었습니다.
 ※ 공지 - 2019년 2월 27일, 28일 테스트케이스가 추가되었습니다.'''
 
+# 수치화해서 다시 풀어보기
 def solution(n, lost, reserve):
-    lost_set = set(lost) - set(reserve)
-    reserve_set = set(reserve) - set(lost)
-
-    for i in reserve_set:
-        if (i-1) in lost_set:
-            lost_set.remove(i-1)
-        elif (i+1) in lost_set:
-            lost_set.remove(i+1)
-    answer = n - len(lost_set)
+    
+    digit_list = [1] * n
+    for i in range(len(digit_list)):
+        if i+1 in lost:
+            digit_list[i] -= 1
+        if i+1 in reserve:
+            digit_list[i] += 1
+    print(digit_list)
+    for i in range(1,len(digit_list)):
+        if (digit_list[i] > 1):
+            if (digit_list[i-1] < 1):
+                digit_list[i-1] = 1
+                digit_list[i] = 1
+            elif (digit_list[i+1] < 1):
+                digit_list[i+1] = 1
+                digit_list[i] = 1
+    answer = 0
+    for i in digit_list:
+        if i > 0:
+            answer += 1
     return answer
+    
+
 
 # def solution(n, lost, reserve):
 #     for i in lost:
