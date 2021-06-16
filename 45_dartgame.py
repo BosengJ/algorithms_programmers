@@ -1,12 +1,16 @@
-def letsSplit(dartResult):
-    for i in range(len(dartResult)):
-        if dartResult[i] == '1' and dartResult[i+1] == '0':
-            q_dartResult = dartResult[:i] + 'Q' + dartResult[(i+2):]
+def letsSplit(li):
+    # string10을 Q로 치환
+    for i in range(len(li)):
+        if (i < len(li)-1) and li[i] == '1' and li[i+1] == '0':
+            q_dartResult = li[:i] + 'Q'
+            if (i+1) != (len(li)-1):
+                q_dartResult += li[(i+2):]
             break
         else:
-            q_dartResult = dartResult
+            q_dartResult = li
     q_dartResult_split = list(q_dartResult)
     
+    # Q를 다시 10으로 치환
     dartResult_split = []
     for ch in q_dartResult_split:
         if ch != 'Q':
@@ -15,53 +19,66 @@ def letsSplit(dartResult):
             dartResult_split.append('10')
     return dartResult_split
 
-def SDT(dartResult_split):
-    score_list = []
-    for i in range(len(dartResult_split)):
-        if dartResult_split[i] == 'S':
-            score_list.append(int(dartResult_split[i-1]))
-        if dartResult_split[i] == 'D':
-            score_list.append(int(dartResult_split[i-1])**2)
-        if dartResult_split[i] == 'T':
-            score_list.append(int(dartResult_split[i-1])**3)
-        if (dartResult_split[i] == '*') or (dartResult_split[i] == '#'):
-            score_list.append(dartResult_split[i])
-    return score_list
+def SDT(li):
+    SDT = {'S':1, 'D':2, 'T':3}
+    SDT_score_list = []
+    for i in range(len(li)):
+        if li[i] in "SDT":
+            SDT_score = int(li[i-1]) ** SDT[li[i]]
+            SDT_score_list.append(SDT_score)
+        if li[i] in "*#":
+            SDT_score_list.append(li[i])
+    return SDT_score_list
 
-def starSharp(sdt_score_list):
-    final_score = []
-    for i in range(len(sdt_score_list)):
-        final_score.append(sdt_score_list[i])
-        if sdt_score_list[i] == '#':
-            final_score = final_score[:-2]
-            final_score.append(int(sdt_score_list[i-1])*(-1))  
+def starSharp(li):
+    final_list = []
+    for score in li:
+        final_list.append(score)
+        
+        # '#'이 있는 단계의 점수
+        if score == '#':
+            final_list[-1] = int(final_list[-1]) * (-1)
+        # '*'이 있는 단계의 점수
+        elif score == '*':
+            final_list[-1] = int(final_list[-1]) * 2
+            if len(final_list) > 1:
+                final_list[-2] = int(final_list[-2]) * 2
+    return final_list
+        
+#         # '*','#'가 없는 단계의 점수
+#         if (i < (len(li)-1)) and (str(li[i]) not in "*#") and (str(li[i+1]) not in "*#"):
+#             final_list.append(li[i])
             
-        if (i<2) and (sdt_score_list[i] == '*'):
-            final_score = []
-            final_score.append(int(sdt_score_list[i-1])*(2))
+#         # '*','#'이 없는 stage03 단계의 점수
+#         elif (i == len(li)-1) and (str(li[i]) not in "*#"):
+#             final_list.append(li[i])
+        
+#         # stage01단계에서 '*'이 있는 경우
+#         elif (i<2) and (li[i] == '*'):
+#             final_list.append(int(li[i-1])*2)
+        
+#         # stage02, stage03에서 '*'이 있는 경우
+#         elif li[i] == '*':
+#             final_list[-1] = int(final_list[-1])*2
+#             final_list.append(int(li[i-1])*2)
+        
+#         # '#'이 있는 경우
+#         elif li[i] =='#':
+#             final_list.append(int(li[i-1])*(-1))
+    # return final_list
     
-    ffinal_score  = []
-    for i in range(len(final_score)):
-        if final_score[i] == '*':
-            ffinal_score = ffinal_score[:-2]
-            ffinal_score.append(int(final_score[i-2])*2)
-            ffinal_score.append(int(final_score[i-1])*2)
-        else:
-            ffinal_score.append(final_score[i])
-    return ffinal_score
-     
 def solution(dartResult):
+    
     dartResult_split = letsSplit(dartResult)
     print(dartResult_split)
     
-    sdt_score_list = SDT(dartResult_split)
-    print(sdt_score_list)
+    SDT_score_list = SDT(dartResult_split)
+    print(SDT_score_list)
     
-    final_score_list = starSharp(sdt_score_list)
-    print(final_score_list)
+    final_list = starSharp(SDT_score_list)
+    print(final_list)
     
     answer = 0
-    for score in final_score_list:
+    for score in final_list:
         answer += int(score)
-
     return answer

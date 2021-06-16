@@ -1,4 +1,5 @@
-a = [1]
-b = 3
-a_list = a*b
-print(a_list)
+a = [1,2,3,'*']
+
+for i in range(len(a)):
+    if str(a[i]) not in "*#":
+        print(a[i])
