@@ -69,6 +69,4 @@ def solution(board, moves):
             ans_list.pop()
         else:
             ans_list.append(basket[i])
-    print(basket)
-    print(ans_list)
     return answer
