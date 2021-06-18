@@ -16,14 +16,13 @@ def solution(arr):
     for n in arr:
         if n in arr_dict:
             arr_dict[n] = int(arr_dict[n]) + 1
-            
+
     answer = []
     for v in arr_dict.values():
         if v > 1:
             answer.append(v)
         else:
-            answer = [-1]
-    
+            answer = [-1] 
     return answer
 
 # arr = [1,2,3,3,3,3,4,4]
