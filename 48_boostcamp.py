@@ -16,6 +16,7 @@ def solution(arr):
     for n in arr:
         if n in arr_dict:
             arr_dict[n] = int(arr_dict[n]) + 1
+            
     answer = []
     for v in arr_dict.values():
         if v > 1:
