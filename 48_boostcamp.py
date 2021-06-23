@@ -12,7 +12,7 @@ arr = [3,5,7,9,1]
 return [-1]'''
 
 def solution(arr):
-    arr_dict = dict(zip(arr,'0'*len(arr)))
+    arr_dict = dict(arr,'0'*len(arr))
     for n in arr:
         if n in arr_dict:
             arr_dict[n] = int(arr_dict[n]) + 1
@@ -25,7 +25,8 @@ def solution(arr):
             answer = [-1] 
     return answer
 
-# arr = [1,2,3,3,3,3,4,4]
+arr = [1,2,3,3,3,3,4,4]
+solution(arr)
 # return [4,2]
 
 # arr = [3,2,4,4,2,5,2,5,5]

@@ -1,4 +1,13 @@
-arr = [1,2,3,'*']
+arr = [[1,2],[1,2],[3,4],[1,2]]
 
-arr_dict = dict(zip(arr,'0'*len(arr)))
-print(arr_dict)
+answer = []
+for i in range(len(arr)):
+    if (i>0) and (arr[i] in answer):
+        cnt = answer.count(arr[i])
+        arr[i].append(cnt)
+        answer.append(arr[i]) 
+
+    else:
+        answer.append(arr[i]) 
+print(answer)
+
