@@ -24,3 +24,30 @@ image0.png
 image1.png
 '''
 
+def computerNode(li):
+    new_li = []
+    for i in range(len(li)):
+        tmp = []
+        for j in range(len(li)):
+            if (i != j) and (li[i][j] == 1):
+                tmp.append(j)
+        new_li.append(tmp)
+    return new_li
+
+def dfs(i, visited, node):
+    visited[i] = True
+    for i in node[i]:
+        if not visited[i]:
+            dfs(i, visited, node)
+    
+
+def solution(n, computers):
+    
+    node = computerNode(computers)
+    visited = [False] * n
+    answer = 0
+    for i in range(n):
+        if visited[i] == False:
+            dfs(i, visited, node)
+            answer += 1
+    return answer
