@@ -92,22 +92,16 @@ def solution(scoville, K):
     while True:
         heapify_sco = heapify(scoville)         # 배열을 정렬해주고
         sort_sco = heap_sort(heapify_sco)
-        print(sort_sco)
         if sort_sco[0] > K:
             break
         if len(sort_sco) == 1:
             return -1
         scoville = calScoville(sort_sco)        # 주어진 대로 계산해준다
-        print(scoville)
         answer += 1                             # 카운트 1회 늘린다
-        print(answer)
     return answer
 
-# scoville = [1, 2, 3, 9, 10, 12]
-# K = 7
-# a = solution(scoville, K)
-# print(a)
+scoville = [1, 2, 3, 9, 10, 12]
+K = 7
+a = solution(scoville, K)
+print(a)
 
-print(solution([0, 0, 3, 9, 10, 12], 7), 3)
-# print(solution([0, 0, 3, 9, 10, 12], 1), 2)
-# print(solution([1, 0], 1), 1)
