@@ -50,3 +50,18 @@ def calScoville(li):
     li.append(num)
     return li
 
+# main 함수
+def solution(scoville, K):
+    answer = 0
+
+    # 배열 속 모든 스코빌 지수가 K 이상이 되었을 때 멈추거나, 원소가 1개 남았는데 이 마저도 K 이상이 아니라면 반복문을 멈춘다
+    while True:
+        if checkScoville(scoville, K) == True:
+            break
+        if len(scoville) == 1:
+            return -1
+        sort_sco = smallToLarge(scoville)   # 배열을 정렬해주고
+        n_sco = calScoville(sort_sco)       # 주어진 대로 계산해준다
+        scoville = n_sco
+        answer += 1                         # 카운트 1회 늘린다
+    return answer
