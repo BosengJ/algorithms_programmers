@@ -27,6 +27,22 @@ scoville	K	return
 모든 음식의 스코빌 지수가 7 이상이 되었고 이때 섞은 횟수는 2회입니다.
 '''
 
+# Test case
+'''
+print(solution([1, 1, 1], 4), 2)
+print(solution([10, 10, 10, 10, 10], 100), 4)
+print(solution([1, 2, 3, 9, 10, 12], 7), 2)
+print(solution([0, 2, 3, 9, 10, 12], 7), 2)
+print(solution([0, 0, 3, 9, 10, 12], 7), 3)
+print(solution([0, 0, 0, 0], 7), -1)
+print(solution([0, 0, 3, 9, 10, 12], 7000), -1)
+print(solution([0, 0, 3, 9, 10, 12], 0), 0)
+print(solution([0, 0, 3, 9, 10, 12], 1), 2)
+print(solution([0, 0], 0), 0)
+print(solution([0, 0], 1), -1)
+print(solution([1, 0], 1), 1)
+'''
+
 # (최대)힙 구조 만들기
 def heapify(li):
     N = len(li)
@@ -91,7 +107,11 @@ def solution(scoville, K):
         answer += 1                             # 카운트 1회 늘린다
     return answer
 
-scoville = [1, 2, 3, 9, 10, 12]
-K = 7
-a = solution(scoville, K)
-print(a)
+# scoville = [1, 2, 3, 9, 10, 12]
+# K = 7
+# a = solution(scoville, K)
+# print(a)
+
+print(solution([0, 0, 3, 9, 10, 12], 7), 3)
+print(solution([0, 0, 3, 9, 10, 12], 1), 2)
+print(solution([1, 0], 1), 1)
