@@ -26,3 +26,12 @@ scoville	K	return
 
 모든 음식의 스코빌 지수가 7 이상이 되었고 이때 섞은 횟수는 2회입니다.
 '''
+
+# 오름차순으로 정렬해주는 함수
+def smallToLarge(li):
+    for i in range(len(li)):
+        for j in range(len(li)-1-i):
+            if li[j] > li[j+1]:
+                li[j], li[j+1] = li[j+1], li[j]
+    return li
+
