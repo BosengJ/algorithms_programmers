@@ -105,3 +105,4 @@ K = 7
 a = solution(scoville, K)
 print(a)
 
+
