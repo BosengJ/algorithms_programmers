@@ -25,3 +25,26 @@ n	result
 4	11
 '''
 
+def solution(n):
+    answer = ''
+    
+    # 3으로 나눠서 몫과 나머지를 구분한다
+    p = n // 3
+    q = n % 3
+
+    # 나머지가 0일 경우, 몫에서 1을 빼주고 나머지 값을 4로 저장한다
+    if q == 0:
+        p -= 1
+        q = 4
+
+    # 몫이 3이상인 경우, 재귀함수를 사용한다
+    if p >= 3:
+        tmp = solution(p)
+        p = int(tmp)
+
+    # 01은 의미가 없으므로 몫이 0을 초과하는 값에 한해서 몫의 문자열을 붙여준다
+    if p > 0:
+        answer += str(p) + str(q)
+    else:
+        answer += str(q)
+    return answer
