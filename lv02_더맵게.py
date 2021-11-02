@@ -85,11 +85,10 @@ def solution(scoville, K):
             break
         if len(scoville) == 1:
             return -1
-        # sort_sco = smallToLarge(scoville)   # 배열을 정렬해주고
-        heapify_sco = heapify(scoville)
+        heapify_sco = heapify(scoville)         # 배열을 정렬해주고
         sort_sco = heap_sort(heapify_sco)
-        scoville = calScoville(sort_sco)       # 주어진 대로 계산해준다
-        answer += 1                         # 카운트 1회 늘린다
+        scoville = calScoville(sort_sco)        # 주어진 대로 계산해준다
+        answer += 1                             # 카운트 1회 늘린다
     return answer
 
 scoville = [1, 2, 3, 9, 10, 12]
