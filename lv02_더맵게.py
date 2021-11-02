@@ -42,3 +42,11 @@ def checkScoville(li,n):
             return False
         return True
 
+# 주어진 문제대로 새로운 스코빌 지수를 만들어내는 함수
+def calScoville(li):
+    num = li[0] + (li[1] * 2)
+    del li[0]
+    del li[0]
+    li.append(num)
+    return li
+
