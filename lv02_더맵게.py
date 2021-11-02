@@ -27,12 +27,36 @@ scoville	K	return
 모든 음식의 스코빌 지수가 7 이상이 되었고 이때 섞은 횟수는 2회입니다.
 '''
 
-# 오름차순으로 정렬해주는 함수
-def smallToLarge(li):
-    for i in range(len(li)):
-        for j in range(len(li)-1-i):
-            if li[j] > li[j+1]:
-                li[j], li[j+1] = li[j+1], li[j]
+# (최대)힙 구조 만들기
+def heapify(li):
+    N = len(li)
+    for i in range(1, N):
+        c = i
+        while c > 0:
+            root = (c - 1) // 2
+            if li[c] > li[root]:
+                li[c], li[root] = li[root], li[c]
+            c = root
+    return li
+
+
+# 힙 정렬하기(오름차순)
+def heap_sort(li):
+    N = len(li)
+    for i in range(N - 1, -1, -1):  # n
+        # 맨 앞과 맨 뒤를 교환! ( 가장 큰 수를 뒤로 보낸다. 그리고 그 가장 큰 수는 FIX!!!! )
+        li[0], li[i] = li[i], li[0]
+
+        # 힙구조가 이상해졌으므로 다시 힙구조로 바꾼다.  # logn
+        root, c = 0, 1
+        while c < i:
+            c = root * 2 + 1
+            if c < i - 1 and li[c] < li[c + 1]:
+                c += 1
+
+            if c < i and li[c] > li[root]:
+                li[c], li[root] = li[root], li[c]
+            root = c
     return li
 
 # 리스트의 값들이 모두 n 이상인지 확인하는 함수
@@ -54,15 +78,17 @@ def calScoville(li):
 def solution(scoville, K):
     answer = 0
 
-    # 배열 속 모든 스코빌 지수가 K 이상이 되었을 때 멈추거나, 원소가 1개 남았는데 이 마저도 K 이상이 아니라면 반복문을 멈춘다
+    # 배열 속 모든 스코빌 지수가 K 이상이 되었을 때 멈추거나
+    # 원소가 1개 남았는데 이 마저도 K 이상이 아니라면 반복문을 멈춘다
     while True:
         if checkScoville(scoville, K) == True:
             break
         if len(scoville) == 1:
             return -1
-        sort_sco = smallToLarge(scoville)   # 배열을 정렬해주고
-        n_sco = calScoville(sort_sco)       # 주어진 대로 계산해준다
-        scoville = n_sco
+        # sort_sco = smallToLarge(scoville)   # 배열을 정렬해주고
+        heapify_sco = heapify(scoville)
+        sort_sco = heap_sort(heapify_sco)
+        scoville = calScoville(sort_sco)       # 주어진 대로 계산해준다
         answer += 1                         # 카운트 1회 늘린다
     return answer
 
