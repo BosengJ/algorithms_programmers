@@ -35,3 +35,10 @@ def smallToLarge(li):
                 li[j], li[j+1] = li[j+1], li[j]
     return li
 
+# 리스트의 값들이 모두 n 이상인지 확인하는 함수
+def checkScoville(li,n):
+    for s in li:
+        if s < n:
+            return False
+        return True
+
