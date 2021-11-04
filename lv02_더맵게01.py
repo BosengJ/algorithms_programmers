@@ -91,6 +91,7 @@ def solution(scoville, K):
     # 원소가 1개 남았는데 이 마저도 K 이상이 아니라면 반복문을 멈춘다
     while True:
         heapify_sco = heapify(scoville)         # 배열을 정렬해주고
+        print(heapify_sco)
         sort_sco = heap_sort(heapify_sco)
         if sort_sco[0] > K:
             break

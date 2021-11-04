@@ -9,6 +9,17 @@ def heapify():
             c = root
     return
 
+# (최소)힙 구조 만들기
+def minHeapify():
+    for i in range(1,N):
+        c = i
+        while c > 0:
+            root = (c - 1) // 2
+            if numbers[c] < numbers[root]:
+                numbers[root], numbers[c] = numbers[c], numbers[root]
+            c = root
+    return
+
 
 # 힙 정렬하기(오름차순)
 def heap_sort():
@@ -31,6 +42,8 @@ def heap_sort():
 
 numbers = [2, 7, 3, 4, 5, 6, 1]
 N = len(numbers)
+minHeapify()
+print(numbers)
 heapify()
 print(numbers)
 heap_sort()
