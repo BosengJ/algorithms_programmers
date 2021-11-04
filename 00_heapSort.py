@@ -40,11 +40,15 @@ def heap_sort():
     return
 
 
-numbers = [2, 7, 3, 4, 5, 6, 1]
+# numbers = [2, 7, 3, 4, 5, 6, 1]
+numbers = [42,22,4,58,1,5,0,5]
 N = len(numbers)
-minHeapify()
-print(numbers)
+# minHeapify()
+# print(numbers)
 heapify()
 print(numbers)
 heap_sort()
 print(numbers)
+
+# numbers.pop()
+# print(numbers)
