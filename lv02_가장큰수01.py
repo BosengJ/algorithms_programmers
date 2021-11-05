@@ -50,7 +50,6 @@ def solution(numbers):
     # numbers의 원소는 1,000 이하이므로 3자리 이하로 비교하기 위해 각 원소를 3번 반복해준다
     triple_nums = tripleWord(str_nums)
     
-    
     # 큰 수 -> 작은 수 정렬해준다
     sorted_nums = LargeToSmall(triple_nums)
     
