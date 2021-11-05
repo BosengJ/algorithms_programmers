@@ -44,15 +44,16 @@ print(solution([1, 0], 1), 1)
 '''
 
 # (최소)힙 구조 만들기
-def minHeapify():
+def minHeapify(li):
+    N = len(li)
     for i in range(1,N):
         c = i
         while c > 0:
             root = (c - 1) // 2
-            if numbers[c] < numbers[root]:
-                numbers[root], numbers[c] = numbers[c], numbers[root]
+            if li[c] < li[root]:
+                li[root], li[c] = li[c], li[root]
             c = root
-    return
+    return li
 
 # (최대)힙 구조 만들기
 def heapify(li):
