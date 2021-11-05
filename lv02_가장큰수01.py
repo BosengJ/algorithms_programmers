@@ -74,5 +74,7 @@ def solution(numbers):
 # numbers = [3, 30, 34, 5, 9]	
 # 정답 "9534330"
 
+numbers = [87,878]
+
 a = solution(numbers)
 print(a)
